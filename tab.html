@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切り替えタブ</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+      <style>
+        .tab-Item {
+          display: flex;
+        }
+        .tab-Item_menu {
+          text-align: center;
+          padding: 8px 0;
+          cursor: pointer;
+          list-style: none;
+          width:300px;
+          font-size: 40px;
+          border-top: 1px solid #000;
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+          border-bottom: 1px solid #000;
+        }
+        .tab-Item_menu:not(:first-child) {
+          border-left: none;
+        }
+        .tab-Item_menu.active {
+          background: #000;
+          color: white;
+        }
+        .tab-Content__item {
+          display: none;
+          font-size: 40px;
+          margin-left: 40px;
+        }
+        .tab-Content__item.show {
+          display: block;
+          text-align: left;
+        }
+      </style>
+
+</head>
+
+<body>
+  <div id="app">
+    <ul class="tab-Item">
+      <li class="tab-Item_menu"　v-for="(tab,index) in tabs"　@click="active=(index+1)" :class="[active===(index+1) ? 'active':'']">{{tab}}</li>
+    </ul>
+    <div class="tab-Content">
+      <div class="tab-Content__item" v-for="(content,index) in contents" :class="[active===(index+1) ? 'show':'']">
+        <div class="tab-content__item show">{{content}}</div>
+      </div>
+    </div>
+    <script>
+    const vm = new Vue({
+      el:'#app',
+    data:{
+      active: 1,
+
+      tabs:['タブ１','タブ２','タブ３'],
+      contents:['コンテンツ１','コンテンツ２','コンテンツ３']
+    },
+  })
+    </script>
+  </div>
+</body>
+
+</html>
